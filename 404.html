@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pillow Brawl</title>
+<link rel="icon" href="/img/icon.jpg">
+<style>
+@font-face{font-family:"Archivo Black";src:url(/fonts/ArchivoBlack-Regular.ttf);font-display:swap}
+@font-face{font-family:"Poppins";src:url(/fonts/Poppins-Bold.ttf);font-weight:700;font-display:swap}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Poppins",system-ui,sans-serif;font-weight:700;color:#fff;background:#1b0f47;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+.card{width:100%;max-width:460px;background:#2b1461;border:4px solid #ffffff26;border-radius:28px;padding:32px 24px}
+img{width:92px;height:92px;border-radius:22px;border:4px solid #ffe36b}
+h1{font-family:"Archivo Black","Poppins",sans-serif;font-weight:400;text-transform:uppercase;font-size:30px;line-height:1;margin:18px 0 8px;color:#ffe36b}
+p{color:#cfc4ff;font-size:15px;line-height:1.5}
+.code{display:flex;gap:10px;justify-content:center;margin:22px 0}
+.code span{width:60px;height:74px;display:flex;align-items:center;justify-content:center;font-family:"Archivo Black",sans-serif;font-size:40px;background:#00000059;border:3px solid #ffe36b;border-radius:14px}
+a.btn{display:block;margin-top:12px;padding:16px;border-radius:18px;font-size:18px;text-decoration:none;color:#fff;background:#ff4f8a;box-shadow:0 5px 0 #b0185a}
+a.ghost{background:#4b2aa8;box-shadow:0 5px 0 #2b1461}
+ol{text-align:left;margin:20px auto 0;padding-left:22px;color:#cfc4ff;font-size:14px;line-height:1.7}
+ol b{color:#fff}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="/img/icon.jpg" alt="Pillow Brawl">
+  <div id="invite" hidden>
+    <h1 id="t1"></h1>
+    <p id="t2"></p>
+    <div class="code" id="code"></div>
+    <a class="btn" id="open"></a>
+    <ol>
+      <li id="s1"></li>
+      <li id="s2"></li>
+      <li id="s3"></li>
+    </ol>
+    <a class="btn ghost" href="/" id="home1"></a>
+  </div>
+  <div id="lost" hidden>
+    <h1 id="l1"></h1>
+    <p id="l2"></p>
+    <a class="btn" href="/" id="home2"></a>
+  </div>
+</div>
+<script>
+// Davet linki: pillowbrawl.com/oda/1234 (ya da /room/1234) bu sayfaya düşer.
+const tr=(navigator.language||"en").toLowerCase().startsWith("tr");
+const m=location.pathname.match(/^\/(?:oda|room)\/(\d{4})\/?$/);
+const T=tr?{
+  t1:"Yastık savaşına davetlisin!",t2:"Arkadaşın seni odasına çağırıyor. Oda kodu:",open:"OYUNU AÇ VE ODAYA GİR",
+  s1:"Oyun yüklüyse yukarıdaki düğmeye bas.",s2:"Açılmazsa oyunda <b>ODA KUR → KATIL</b>'a gir.",s3:"Oda kodunu yaz: <b>{c}</b>",
+  home:"Yastık Savaşı nedir?",l1:"Sayfa bulunamadı",l2:"Aradığın sayfa yastıkların altında kaybolmuş.",home2:"ANA SAYFAYA DÖN",title:"Yastık Savaşı — Oda daveti"
+}:{
+  t1:"You're invited to a pillow fight!",t2:"Your friend is calling you to their room. Room code:",open:"OPEN THE GAME AND JOIN",
+  s1:"If the game is installed, tap the button above.",s2:"If it doesn't open, go to <b>CREATE ROOM → JOIN</b> in the game.",s3:"Type the room code: <b>{c}</b>",
+  home:"What is Pillow Brawl?",l1:"Page not found",l2:"The page you're looking for got lost under the pillows.",home2:"BACK TO HOME",title:"Pillow Brawl — Room invite"
+};
+document.documentElement.lang=tr?"tr":"en";
+const $=id=>document.getElementById(id);
+if(m){
+  const c=m[1];
+  document.title=T.title;
+  $("t1").textContent=T.t1; $("t2").textContent=T.t2;
+  $("code").innerHTML=c.split("").map(d=>"<span>"+d+"</span>").join("");
+  $("open").textContent=T.open; $("open").href="pillowbrawl://oda/"+c;
+  $("s1").innerHTML=T.s1; $("s2").innerHTML=T.s2; $("s3").innerHTML=T.s3.replace("{c}",c);
+  $("home1").textContent=T.home; $("invite").hidden=false;
+}else{
+  $("l1").textContent=T.l1; $("l2").textContent=T.l2; $("home2").textContent=T.home2; $("lost").hidden=false;
+}
+</script>
+</body>
+</html>
