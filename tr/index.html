@@ -89,7 +89,13 @@ h1 .b{color:var(--pink);margin-top:-.04em}
 .lineup img:nth-child(5){height:106%;z-index:2}
 @keyframes bob{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-10px) rotate(1.2deg)}}
 .bed{height:54px;background:linear-gradient(#ff8fb5,#ff5c94);border-top:8px solid #fff;border-radius:50% 50% 0 0/26px 26px 0 0;margin-top:-34px;position:relative;z-index:3}
-@media (max-width:640px){.lineup img:nth-child(n+8){display:none}.lineup img{margin:0 -3.5%}}
+@media (max-width:640px){
+.lineup{display:grid;grid-template-columns:repeat(5,1fr);height:auto;padding:0 4px;margin-top:26px}
+.lineup img,.lineup img:nth-child(2n),.lineup img:nth-child(5){height:auto;width:132%;margin:0 0 0 -16%;display:block}
+.lineup img:nth-child(n+6){margin-top:-150%;position:relative;z-index:3}
+.lineup img:nth-child(-n+5){transform:scale(.92);transform-origin:50% 100%;animation:none}
+.tag{margin-top:40px!important}.lineup img:nth-child(n+6){left:3%}
+}
 
 /* ---------- ticker ---------- */
 .ticker{background:var(--yel);color:#2b1461;overflow:hidden;white-space:nowrap;border-block:6px solid #2b1461;transform:rotate(-1.2deg) scale(1.03);margin:-6px 0 0;position:relative;z-index:4}
