@@ -3,12 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pillow Brawl — Online Pillow Fight Game</title>
-<meta name="description" content="Pillow Brawl: a fast online pillow-fight arena for iPhone and Android. 10 heroes, 4 game modes, 12 arenas — and watch out, Mom's coming!">
-<meta property="og:title" content="Pillow Brawl">
+<title>Pillow Brawl — Online Pillow Fight Game for iPhone & Android</title>
+<meta name="description" content="Pillow Brawl is a fast online pillow-fight arena game for iPhone and Android. 10 heroes, 4 game modes, 12 arenas, 5-player matches — and watch out, Mom's coming!">
+<link rel="canonical" href="https://pillowbrawl.com/">
+<link rel="alternate" hreflang="en" href="https://pillowbrawl.com/">
+<link rel="alternate" hreflang="tr" href="https://pillowbrawl.com/tr/">
+<link rel="alternate" hreflang="x-default" href="https://pillowbrawl.com/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#24115c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pillow Brawl">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://pillowbrawl.com/">
+<meta property="og:title" content="Pillow Brawl — Online Pillow Fight Game for iPhone & Android">
 <meta property="og:description" content="Online pillow-fight arena. 10 heroes, 4 modes, 12 arenas. Mom's coming!">
-<meta property="og:image" content="img/s0.jpg">
+<meta property="og:image" content="https://pillowbrawl.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pillow Brawl — Online Pillow Fight Game for iPhone & Android">
+<meta name="twitter:description" content="Online pillow-fight arena. 10 heroes, 4 modes, 12 arenas. Mom's coming!">
+<meta name="twitter:image" content="https://pillowbrawl.com/img/og.jpg">
 <link rel="icon" href="img/icon.jpg">
+<link rel="apple-touch-icon" href="img/icon.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "Pillow Brawl", "alternateName": "Yastık Savaşı", "url": "https://pillowbrawl.com/", "image": "https://pillowbrawl.com/img/og.jpg", "description": "Pillow Brawl is a fast online pillow-fight arena game for iPhone and Android. 10 heroes, 4 game modes, 12 arenas, 5-player matches — and watch out, Mom's coming!", "genre": ["Action", "Multiplayer", "Party"], "gamePlatform": ["iOS", "Android"], "operatingSystem": "iOS, Android", "applicationCategory": "Game", "playMode": "MultiPlayer", "numberOfPlayers": {"@type": "QuantitativeValue", "minValue": 1, "maxValue": 5}, "inLanguage": ["en", "tr", "de", "es", "fr", "pt", "it", "id"], "sameAs": ["https://www.instagram.com/pillowbrawlgame"]}</script>
 <style>
 /* VOICE: loud, playful, a bit cheeky — a sleepover that got out of hand
    IDEA: lights out in the bedroom; the title glows like a night-light and the heroes line up on the bed
@@ -152,7 +170,7 @@ footer .sp{flex:1}
     </div>
   </div>
   <div class="lineup" aria-hidden="true">
-    <img src="img/c_gececi.webp" alt=""><img src="img/c_kabus.webp" alt=""><img src="img/c_robo.webp" alt=""><img src="img/c_bigudi.webp" alt=""><img src="img/c_dino.webp" alt=""><img src="img/c_dede.webp" alt=""><img src="img/c_astro.webp" alt=""><img src="img/c_pamuk.webp" alt=""><img src="img/c_ninja.webp" alt=""><img src="img/c_uyurgezer.webp" alt="">
+    <img src="img/c_gececi.webp" alt="Gececi — Pillow Brawl hero"><img src="img/c_kabus.webp" alt="Kabus — Pillow Brawl hero"><img src="img/c_robo.webp" alt="Robo — Pillow Brawl hero"><img src="img/c_bigudi.webp" alt="Bigudi Teyze — Pillow Brawl hero"><img src="img/c_dino.webp" alt="Dino — Pillow Brawl hero"><img src="img/c_dede.webp" alt="Dede — Pillow Brawl hero"><img src="img/c_astro.webp" alt="Astro — Pillow Brawl hero"><img src="img/c_pamuk.webp" alt="Pamuk — Pillow Brawl hero"><img src="img/c_ninja.webp" alt="Ninja — Pillow Brawl hero"><img src="img/c_uyurgezer.webp" alt="Uyurgezer — Pillow Brawl hero">
   </div>
   <div class="bed"></div>
 </header>
@@ -193,8 +211,8 @@ footer .sp{flex:1}
   <div class="wrap">
     <h2 class="shout" data-t="h_gal">Straight from <em>the game</em></h2>
     <div class="grid">
-      <img src="img/s0.jpg" alt=""><img src="img/s1.jpg" alt=""><img src="img/s3.jpg" alt="">
-      <img src="img/s4.jpg" alt=""><img src="img/s5.jpg" alt=""><img src="img/s2.jpg" alt="">
+      <img src="img/s0.jpg" alt="Pillow Brawl gameplay — bedroom arena" loading="lazy"><img src="img/s1.jpg" alt="Pillow Brawl gameplay — kitchen arena" loading="lazy"><img src="img/s3.jpg" alt="Pillow Brawl gameplay — pillow fort arena" loading="lazy">
+      <img src="img/s4.jpg" alt="Pillow Brawl gameplay — online match" loading="lazy"><img src="img/s5.jpg" alt="Pillow Brawl gameplay — spaceship arena" loading="lazy"><img src="img/s2.jpg" alt="Pillow Brawl gameplay — Mom's coming" loading="lazy">
     </div>
   </div>
 </section>
@@ -306,6 +324,7 @@ function setLang(l){
   try{localStorage.setItem("pb_lang",l)}catch(e){}
 }
 let start=(location.hash||"").slice(1);
+if(!T[start]&&window.PB_FORCE) start=window.PB_FORCE;
 if(!T[start]){try{start=localStorage.getItem("pb_lang")}catch(e){}}
 if(!T[start]) start=(navigator.language||"en").slice(0,2).toLowerCase();
 setLang(start);
