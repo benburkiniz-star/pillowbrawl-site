@@ -1,2 +1,3 @@
-# pillowbrawl-site
-Pillow Brawl official website
+# Pillow Brawl
+
+Source of https://pillowbrawl.com

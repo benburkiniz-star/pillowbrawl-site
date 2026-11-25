@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pillow Brawl Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: plain, formal, reassuring
+   IDEA: a well-set policy memo with the game's night-sky header
+   PICTURE: none beyond the title band
+   COLOUR and TYPE: deep night purple band, white page; Baloo 2 + Nunito
+   LAYOUT: one calm column, language row on top */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#14102b);--ink:light-dark(#1d1838,#ece9ff);--soft:light-dark(#5a5478,#b6afdc);--line:light-dark(#e4e0f4,#2c2550);--band:#2a1f6b;--acc:#ffb51f}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Nunito,system-ui,sans-serif;overflow-x:clip}
+header{background:var(--band);color:#fff;padding:clamp(28px,5vw,56px) max(5vw,16px) 24px}
+header .in,main{max-width:760px;margin:0 auto}
+h1{font:700 clamp(30px,5vw,44px)/1.05 "Baloo 2",system-ui,sans-serif;margin:0 0 6px;text-wrap:balance}
+header p{margin:0;color:#d9d3ff}
+.langs{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.langs button{font:700 15px Nunito,sans-serif;min-height:44px;padding:0 16px;border-radius:22px;border:2px solid #ffffff55;background:transparent;color:#fff;cursor:pointer}
+.langs button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#2a1f6b}
+.langs button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+main{padding:28px max(5vw,16px) 56px}
+h2{font:700 21px/1.2 "Baloo 2",system-ui,sans-serif;margin:30px 0 6px}
+p,li{max-width:68ch}
+ul{padding-left:20px}
+a{color:inherit;text-decoration-color:var(--acc);text-decoration-thickness:2px}
+.date{color:var(--soft);font-size:14px;border-top:1px solid var(--line);margin-top:36px;padding-top:14px}
+.mail{white-space:nowrap;font-weight:700}
+</style>
+</head>
+<body>
+<header><div class="in">
+<h1 id="t">Privacy Policy</h1>
+<p id="sub">Pillow Brawl (Yastık Savaşı)</p>
+<div class="langs" id="langs"></div>
+</div></header>
+<main id="doc"></main>
+<script>
+{
+const MAIL='benburkiniz@gmail.com';
+const L={
+en:{n:'English',t:'Privacy Policy',d:'Last updated: 24 November 2026',s:[
+['Who we are','Pillow Brawl (called Yastık Savaşı in Turkish) is a mobile game. This policy explains what information the game uses and why. Contact: <span class="mail">'+MAIL+'</span>.'],
+['No account, no personal details','You can play without an account. We do not ask for your name, email, phone number, contacts, photos or location. The game gives you a random nickname that you can change.'],
+['Stored on your device','Your progress, coins, characters, settings and nickname are saved only on your device. Deleting the game deletes this data.'],
+['Playing with friends on the same Wi-Fi','To find a friend\'s room the game uses your local network (on iPhone it asks for "Local Network" permission). Only your nickname, character and in-game moves are shared, and only with the players in that room. This data does not go to our servers.'],
+['Advertising','The game shows ads through Google AdMob. Google may use your device\'s advertising ID, IP address and ad interactions to show ads, limit how often you see them and prevent fraud. Personalised ads are shown only if you agree to them; players under 16 only see non-personalised ads. You can reset or limit your advertising ID in your device settings. See <a href="https://policies.google.com/technologies/ads">how Google uses data for ads</a>.'],
+['Purchases','In-app purchases are handled by the App Store or Google Play. We never see your payment details.'],
+['Usage statistics','We may collect anonymous statistics (for example which levels are played and how long a match lasts) to improve the game. They are not linked to your identity and are not collected for players under 16.'],
+['Notifications','The game can send reminders (for example "your daily reward is ready"). They are created on your device and can be turned off in the game settings or your phone settings.'],
+['Children','When the game starts, it asks for your age group. The game is not directed at children under 13. For players under 16 we do not show personalised ads and do not collect usage statistics. Parents can contact us at the address above with any request.'],
+['Your rights','You can delete all game data by deleting the game. For questions, or to request access to or deletion of data, write to <span class="mail">'+MAIL+'</span>. We reply within 30 days.'],
+['Changes','If this policy changes, we will update this page and the date below.']]},
+tr:{n:'Türkçe',t:'Gizlilik Politikası',d:'Son güncelleme: 24 Kasım 2026',s:[
+['Biz kimiz','Yastık Savaşı (yurt dışında Pillow Brawl) bir mobil oyundur. Bu politika, oyunun hangi bilgileri neden kullandığını açıklar. İletişim: <span class="mail">'+MAIL+'</span>.'],
+['Hesap yok, kişisel bilgi yok','Hesap açmadan oynayabilirsin. Adını, e-postanı, telefon numaranı, rehberini, fotoğraflarını veya konumunu istemeyiz. Oyun sana değiştirebileceğin rastgele bir takma ad verir.'],
+['Cihazında saklananlar','İlerlemen, jetonların, karakterlerin, ayarların ve takma adın yalnızca cihazında saklanır. Oyunu silersen bu bilgiler de silinir.'],
+['Aynı Wi-Fi\'de arkadaşlarla oynama','Arkadaşının odasını bulmak için oyun yerel ağını kullanır (iPhone\'da "Yerel Ağ" izni ister). Yalnızca takma adın, karakterin ve oyundaki hareketlerin, sadece o odadaki oyuncularla paylaşılır. Bu bilgiler sunucularımıza gitmez.'],
+['Reklamlar','Oyun Google AdMob ile reklam gösterir. Google reklam göstermek, sıklığı sınırlamak ve dolandırıcılığı önlemek için cihazının reklam kimliğini, IP adresini ve reklam etkileşimlerini kullanabilir. Kişiselleştirilmiş reklamlar yalnızca onay verirsen gösterilir; 16 yaş altı oyunculara yalnızca kişiselleştirilmemiş reklam gösterilir. Reklam kimliğini telefon ayarlarından sıfırlayabilir veya sınırlayabilirsin. Ayrıntılar: <a href="https://policies.google.com/technologies/ads?hl=tr">Google reklamlarda verileri nasıl kullanır</a>.'],
+['Satın almalar','Uygulama içi satın almalar App Store veya Google Play üzerinden yapılır. Ödeme bilgilerini hiçbir zaman görmeyiz.'],
+['Kullanım istatistikleri','Oyunu geliştirmek için anonim istatistikler (örneğin hangi bölümlerin oynandığı, bir maçın ne kadar sürdüğü) toplayabiliriz. Bunlar kimliğinle eşleştirilmez ve 16 yaş altı oyunculardan toplanmaz.'],
+['Bildirimler','Oyun hatırlatma gönderebilir (örneğin "günlük ödülün hazır"). Bunlar cihazında oluşturulur; oyun ayarlarından veya telefon ayarlarından kapatabilirsin.'],
+['Çocuklar','Oyun açılışta yaş grubunu sorar. Oyun 13 yaş altı çocuklara yönelik değildir. 16 yaş altı oyunculara kişiselleştirilmiş reklam gösterilmez ve kullanım istatistiği toplanmaz. Veliler her türlü talep için yukarıdaki adresten bize ulaşabilir.'],
+['Hakların (KVKK ve GDPR)','Oyunu silerek tüm oyun verilerini silebilirsin. Sorular, verilere erişim veya silme talepleri için <span class="mail">'+MAIL+'</span> adresine yaz. 30 gün içinde yanıt veririz.'],
+['Değişiklikler','Bu politika değişirse bu sayfayı ve aşağıdaki tarihi güncelleriz.']]},
+de:{n:'Deutsch',t:'Datenschutzerklärung',d:'Zuletzt aktualisiert: 24. November 2026',s:[
+['Wer wir sind','Pillow Brawl (auf Türkisch Yastık Savaşı) ist ein Handyspiel. Diese Erklärung beschreibt, welche Informationen das Spiel nutzt und warum. Kontakt: <span class="mail">'+MAIL+'</span>.'],
+['Kein Konto, keine persönlichen Daten','Du kannst ohne Konto spielen. Wir fragen nicht nach Name, E-Mail, Telefonnummer, Kontakten, Fotos oder Standort. Das Spiel gibt dir einen zufälligen Spitznamen, den du ändern kannst.'],
+['Auf deinem Gerät gespeichert','Fortschritt, Münzen, Figuren, Einstellungen und Spitzname werden nur auf deinem Gerät gespeichert. Wenn du das Spiel löschst, werden diese Daten gelöscht.'],
+['Mit Freunden im selben WLAN spielen','Um den Raum eines Freundes zu finden, nutzt das Spiel dein lokales Netzwerk (auf dem iPhone fragt es nach der Berechtigung „Lokales Netzwerk“). Nur Spitzname, Figur und Spielzüge werden geteilt, und nur mit den Spielern in diesem Raum. Diese Daten gehen nicht an unsere Server.'],
+['Werbung','Das Spiel zeigt Werbung über Google AdMob. Google kann die Werbe-ID deines Geräts, die IP-Adresse und Werbe-Interaktionen nutzen, um Anzeigen zu zeigen, ihre Häufigkeit zu begrenzen und Betrug zu verhindern. Personalisierte Werbung gibt es nur mit deiner Zustimmung; Spieler unter 16 sehen nur nicht personalisierte Werbung. Die Werbe-ID kannst du in den Geräteeinstellungen zurücksetzen oder einschränken. Siehe <a href="https://policies.google.com/technologies/ads?hl=de">wie Google Daten für Werbung nutzt</a>.'],
+['Käufe','In-App-Käufe werden über den App Store oder Google Play abgewickelt. Zahlungsdaten sehen wir nie.'],
+['Nutzungsstatistiken','Wir können anonyme Statistiken erheben (zum Beispiel welche Level gespielt werden und wie lange ein Match dauert), um das Spiel zu verbessern. Sie sind nicht mit deiner Identität verknüpft und werden bei Spielern unter 16 nicht erhoben.'],
+['Benachrichtigungen','Das Spiel kann Erinnerungen senden (zum Beispiel „deine tägliche Belohnung ist bereit“). Sie entstehen auf deinem Gerät und lassen sich im Spiel oder in den Telefoneinstellungen ausschalten.'],
+['Kinder','Beim Start fragt das Spiel nach deiner Altersgruppe. Das Spiel richtet sich nicht an Kinder unter 13. Für Spieler unter 16 zeigen wir keine personalisierte Werbung und erheben keine Nutzungsstatistiken. Eltern können uns unter der obigen Adresse kontaktieren.'],
+['Deine Rechte','Du kannst alle Spieldaten löschen, indem du das Spiel löschst. Für Fragen, Auskunft oder Löschung schreib an <span class="mail">'+MAIL+'</span>. Wir antworten innerhalb von 30 Tagen.'],
+['Änderungen','Wenn sich diese Erklärung ändert, aktualisieren wir diese Seite und das Datum unten.']]},
+es:{n:'Español',t:'Política de privacidad',d:'Última actualización: 24 de noviembre de 2026',s:[
+['Quiénes somos','Pillow Brawl (Yastık Savaşı en turco) es un juego para móviles. Esta política explica qué información usa el juego y por qué. Contacto: <span class="mail">'+MAIL+'</span>.'],
+['Sin cuenta ni datos personales','Puedes jugar sin cuenta. No pedimos tu nombre, correo, teléfono, contactos, fotos ni ubicación. El juego te da un apodo aleatorio que puedes cambiar.'],
+['Guardado en tu dispositivo','Tu progreso, monedas, personajes, ajustes y apodo se guardan solo en tu dispositivo. Si borras el juego, se borran estos datos.'],
+['Jugar con amigos en la misma Wi-Fi','Para encontrar la sala de un amigo, el juego usa tu red local (en iPhone pide el permiso «Red local»). Solo se comparten tu apodo, tu personaje y tus movimientos, y solo con los jugadores de esa sala. Estos datos no llegan a nuestros servidores.'],
+['Publicidad','El juego muestra anuncios mediante Google AdMob. Google puede usar el identificador de publicidad del dispositivo, la dirección IP y las interacciones con anuncios para mostrarlos, limitar su frecuencia y evitar fraudes. Los anuncios personalizados solo se muestran si das tu consentimiento; los jugadores menores de 16 años solo ven anuncios no personalizados. Puedes restablecer o limitar el identificador en los ajustes del dispositivo. Consulta <a href="https://policies.google.com/technologies/ads?hl=es">cómo usa Google los datos en publicidad</a>.'],
+['Compras','Las compras dentro de la app las gestiona App Store o Google Play. Nunca vemos tus datos de pago.'],
+['Estadísticas de uso','Podemos recoger estadísticas anónimas (por ejemplo, qué niveles se juegan y cuánto dura una partida) para mejorar el juego. No se vinculan a tu identidad y no se recogen de jugadores menores de 16 años.'],
+['Notificaciones','El juego puede enviar recordatorios (por ejemplo, «tu recompensa diaria está lista»). Se crean en tu dispositivo y puedes desactivarlas en los ajustes del juego o del teléfono.'],
+['Niños','Al empezar, el juego pregunta tu grupo de edad. El juego no está dirigido a menores de 13 años. A los menores de 16 no les mostramos anuncios personalizados ni recogemos estadísticas. Los padres pueden escribirnos a la dirección de arriba.'],
+['Tus derechos','Puedes borrar todos los datos del juego borrando el juego. Para preguntas o solicitudes de acceso o eliminación, escribe a <span class="mail">'+MAIL+'</span>. Respondemos en 30 días.'],
+['Cambios','Si esta política cambia, actualizaremos esta página y la fecha de abajo.']]},
+fr:{n:'Français',t:'Politique de confidentialité',d:'Dernière mise à jour : 24 novembre 2026',s:[
+['Qui sommes-nous','Pillow Brawl (Yastık Savaşı en turc) est un jeu mobile. Cette politique explique quelles informations le jeu utilise et pourquoi. Contact : <span class="mail">'+MAIL+'</span>.'],
+['Pas de compte, pas de données personnelles','Tu peux jouer sans compte. Nous ne demandons ni nom, ni e-mail, ni numéro de téléphone, ni contacts, ni photos, ni position. Le jeu te donne un pseudo aléatoire que tu peux changer.'],
+['Enregistré sur ton appareil','Ta progression, tes pièces, tes personnages, tes réglages et ton pseudo sont enregistrés uniquement sur ton appareil. Supprimer le jeu supprime ces données.'],
+['Jouer avec des amis sur le même Wi-Fi','Pour trouver le salon d\'un ami, le jeu utilise ton réseau local (sur iPhone, il demande l\'autorisation « Réseau local »). Seuls ton pseudo, ton personnage et tes actions sont partagés, et seulement avec les joueurs de ce salon. Ces données ne vont pas sur nos serveurs.'],
+['Publicité','Le jeu affiche des publicités via Google AdMob. Google peut utiliser l\'identifiant publicitaire de l\'appareil, l\'adresse IP et les interactions avec les annonces pour les afficher, limiter leur fréquence et éviter la fraude. Les annonces personnalisées ne sont affichées qu\'avec ton accord ; les joueurs de moins de 16 ans ne voient que des annonces non personnalisées. Tu peux réinitialiser ou limiter l\'identifiant dans les réglages. Voir <a href="https://policies.google.com/technologies/ads?hl=fr">comment Google utilise les données publicitaires</a>.'],
+['Achats','Les achats intégrés sont gérés par l\'App Store ou Google Play. Nous ne voyons jamais tes informations de paiement.'],
+['Statistiques d\'utilisation','Nous pouvons collecter des statistiques anonymes (par exemple les niveaux joués et la durée d\'une partie) pour améliorer le jeu. Elles ne sont pas liées à ton identité et ne sont pas collectées pour les moins de 16 ans.'],
+['Notifications','Le jeu peut envoyer des rappels (par exemple « ta récompense du jour est prête »). Ils sont créés sur ton appareil et se désactivent dans les réglages du jeu ou du téléphone.'],
+['Enfants','Au démarrage, le jeu demande ta tranche d\'âge. Le jeu ne s\'adresse pas aux moins de 13 ans. Pour les moins de 16 ans, pas de publicité personnalisée ni de statistiques. Les parents peuvent nous écrire à l\'adresse ci-dessus.'],
+['Tes droits','Tu peux effacer toutes les données en supprimant le jeu. Pour toute question ou demande d\'accès ou de suppression, écris à <span class="mail">'+MAIL+'</span>. Nous répondons sous 30 jours.'],
+['Modifications','Si cette politique change, nous mettrons à jour cette page et la date ci-dessous.']]},
+pt:{n:'Português',t:'Política de privacidade',d:'Última atualização: 24 de novembro de 2026',s:[
+['Quem somos','Pillow Brawl (Yastık Savaşı em turco) é um jogo para celular. Esta política explica quais informações o jogo usa e por quê. Contato: <span class="mail">'+MAIL+'</span>.'],
+['Sem conta, sem dados pessoais','Você pode jogar sem conta. Não pedimos nome, e-mail, telefone, contatos, fotos ou localização. O jogo dá a você um apelido aleatório que pode ser alterado.'],
+['Salvo no seu aparelho','Seu progresso, moedas, personagens, configurações e apelido ficam salvos apenas no seu aparelho. Ao apagar o jogo, esses dados são apagados.'],
+['Jogar com amigos no mesmo Wi-Fi','Para encontrar a sala de um amigo, o jogo usa sua rede local (no iPhone ele pede a permissão "Rede Local"). Só seu apelido, personagem e jogadas são compartilhados, e só com os jogadores daquela sala. Esses dados não vão para nossos servidores.'],
+['Publicidade','O jogo mostra anúncios pelo Google AdMob. O Google pode usar o ID de publicidade do aparelho, o endereço IP e as interações com anúncios para exibi-los, limitar a frequência e evitar fraudes. Anúncios personalizados só aparecem com seu consentimento; jogadores com menos de 16 anos veem apenas anúncios não personalizados. Você pode redefinir ou limitar o ID nas configurações do aparelho. Veja <a href="https://policies.google.com/technologies/ads?hl=pt-BR">como o Google usa dados em anúncios</a>.'],
+['Compras','As compras no app são feitas pela App Store ou pelo Google Play. Nunca vemos seus dados de pagamento.'],
+['Estatísticas de uso','Podemos coletar estatísticas anônimas (por exemplo, quais fases são jogadas e quanto dura uma partida) para melhorar o jogo. Elas não são ligadas à sua identidade e não são coletadas de menores de 16 anos.'],
+['Notificações','O jogo pode enviar lembretes (por exemplo, "sua recompensa diária está pronta"). Eles são criados no seu aparelho e podem ser desligados nas configurações do jogo ou do celular.'],
+['Crianças','Ao abrir, o jogo pergunta sua faixa etária. O jogo não é direcionado a menores de 13 anos. Para menores de 16, não mostramos anúncios personalizados nem coletamos estatísticas. Os pais podem nos escrever no endereço acima.'],
+['Seus direitos','Você pode apagar todos os dados apagando o jogo. Para dúvidas ou pedidos de acesso ou exclusão, escreva para <span class="mail">'+MAIL+'</span>. Respondemos em até 30 dias.'],
+['Alterações','Se esta política mudar, atualizaremos esta página e a data abaixo.']]},
+it:{n:'Italiano',t:'Informativa sulla privacy',d:'Ultimo aggiornamento: 24 novembre 2026',s:[
+['Chi siamo','Pillow Brawl (in turco Yastık Savaşı) è un gioco per dispositivi mobili. Questa informativa spiega quali informazioni usa il gioco e perché. Contatto: <span class="mail">'+MAIL+'</span>.'],
+['Nessun account, nessun dato personale','Puoi giocare senza account. Non chiediamo nome, e-mail, numero di telefono, contatti, foto o posizione. Il gioco ti assegna un soprannome casuale che puoi cambiare.'],
+['Salvato sul tuo dispositivo','Progressi, monete, personaggi, impostazioni e soprannome sono salvati solo sul tuo dispositivo. Eliminando il gioco elimini questi dati.'],
+['Giocare con amici sulla stessa Wi-Fi','Per trovare la stanza di un amico il gioco usa la tua rete locale (su iPhone chiede il permesso "Rete locale"). Vengono condivisi solo soprannome, personaggio e mosse, e solo con i giocatori di quella stanza. Questi dati non arrivano ai nostri server.'],
+['Pubblicità','Il gioco mostra annunci tramite Google AdMob. Google può usare l\'ID pubblicitario del dispositivo, l\'indirizzo IP e le interazioni con gli annunci per mostrarli, limitarne la frequenza e prevenire frodi. Gli annunci personalizzati compaiono solo con il tuo consenso; i giocatori sotto i 16 anni vedono solo annunci non personalizzati. Puoi reimpostare o limitare l\'ID nelle impostazioni del dispositivo. Vedi <a href="https://policies.google.com/technologies/ads?hl=it">come Google usa i dati per la pubblicità</a>.'],
+['Acquisti','Gli acquisti in-app sono gestiti da App Store o Google Play. Non vediamo mai i tuoi dati di pagamento.'],
+['Statistiche di utilizzo','Possiamo raccogliere statistiche anonime (per esempio quali livelli si giocano e quanto dura una partita) per migliorare il gioco. Non sono collegate alla tua identità e non vengono raccolte per i minori di 16 anni.'],
+['Notifiche','Il gioco può inviare promemoria (per esempio "la tua ricompensa giornaliera è pronta"). Sono creati sul dispositivo e si disattivano dalle impostazioni del gioco o del telefono.'],
+['Bambini','All\'avvio il gioco chiede la fascia d\'età. Il gioco non è rivolto ai minori di 13 anni. Ai minori di 16 anni non mostriamo annunci personalizzati e non raccogliamo statistiche. I genitori possono scriverci all\'indirizzo sopra.'],
+['I tuoi diritti','Puoi cancellare tutti i dati eliminando il gioco. Per domande o richieste di accesso o cancellazione scrivi a <span class="mail">'+MAIL+'</span>. Rispondiamo entro 30 giorni.'],
+['Modifiche','Se questa informativa cambia, aggiorneremo questa pagina e la data qui sotto.']]},
+id:{n:'Indonesia',t:'Kebijakan Privasi',d:'Terakhir diperbarui: 24 November 2026',s:[
+['Siapa kami','Pillow Brawl (dalam bahasa Turki Yastık Savaşı) adalah game seluler. Kebijakan ini menjelaskan informasi apa yang digunakan game dan alasannya. Kontak: <span class="mail">'+MAIL+'</span>.'],
+['Tanpa akun, tanpa data pribadi','Kamu bisa bermain tanpa akun. Kami tidak meminta nama, email, nomor telepon, kontak, foto, atau lokasi. Game memberimu nama panggilan acak yang bisa diubah.'],
+['Tersimpan di perangkatmu','Progres, koin, karakter, pengaturan, dan nama panggilan hanya disimpan di perangkatmu. Menghapus game akan menghapus data ini.'],
+['Bermain dengan teman di Wi-Fi yang sama','Untuk menemukan ruang teman, game memakai jaringan lokalmu (di iPhone akan meminta izin "Jaringan Lokal"). Hanya nama panggilan, karakter, dan gerakan dalam game yang dibagikan, dan hanya dengan pemain di ruang itu. Data ini tidak dikirim ke server kami.'],
+['Iklan','Game menampilkan iklan melalui Google AdMob. Google dapat memakai ID iklan perangkat, alamat IP, dan interaksi iklan untuk menampilkan iklan, membatasi frekuensinya, dan mencegah penipuan. Iklan yang dipersonalisasi hanya ditampilkan jika kamu setuju; pemain di bawah 16 tahun hanya melihat iklan yang tidak dipersonalisasi. Kamu bisa mengatur ulang atau membatasi ID iklan di pengaturan perangkat. Lihat <a href="https://policies.google.com/technologies/ads?hl=id">cara Google memakai data untuk iklan</a>.'],
+['Pembelian','Pembelian dalam aplikasi diproses oleh App Store atau Google Play. Kami tidak pernah melihat detail pembayaranmu.'],
+['Statistik penggunaan','Kami dapat mengumpulkan statistik anonim (misalnya level yang dimainkan dan lama satu pertandingan) untuk memperbaiki game. Statistik ini tidak terhubung dengan identitasmu dan tidak dikumpulkan dari pemain di bawah 16 tahun.'],
+['Notifikasi','Game dapat mengirim pengingat (misalnya "hadiah harianmu siap"). Pengingat dibuat di perangkatmu dan bisa dimatikan di pengaturan game atau ponsel.'],
+['Anak-anak','Saat dibuka, game menanyakan kelompok usiamu. Game ini tidak ditujukan untuk anak di bawah 13 tahun. Untuk pemain di bawah 16 tahun kami tidak menampilkan iklan yang dipersonalisasi dan tidak mengumpulkan statistik. Orang tua dapat menghubungi kami di alamat di atas.'],
+['Hakmu','Kamu bisa menghapus semua data game dengan menghapus game. Untuk pertanyaan atau permintaan akses atau penghapusan data, tulis ke <span class="mail">'+MAIL+'</span>. Kami membalas dalam 30 hari.'],
+['Perubahan','Jika kebijakan ini berubah, kami akan memperbarui halaman ini dan tanggal di bawah.']]}
+};
+const order=['tr','en','de','es','fr','pt','it','id'];
+const bar=document.getElementById('langs'),doc=document.getElementById('doc');
+function show(k){
+  if(!L[k])k='en';
+  const p=L[k];
+  document.documentElement.lang=k;
+  document.getElementById('t').textContent=p.t;
+  doc.innerHTML=p.s.map(([h,b])=>'<h2>'+h+'</h2><p>'+b+'</p>').join('')+'<p class="date">'+p.d+'</p>';
+  for(const b of bar.children)b.setAttribute('aria-pressed',b.dataset.k===k);
+}
+bar.innerHTML=order.map(k=>'<button type="button" data-k="'+k+'">'+L[k].n+'</button>').join('');
+bar.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;try{history.replaceState(null,'','#'+b.dataset.k)}catch(_){location.hash=b.dataset.k}show(b.dataset.k)});
+function initial(){const h=location.hash.slice(1);if(L[h])return h;const n=(navigator.language||'en').slice(0,2);return L[n]?n:'en'}
+window.addEventListener('hashchange',()=>show(initial()));
+show(initial());
+}
+</script>
+</body>
+</html>

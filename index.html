@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pillow Brawl — Online Pillow Fight Game</title>
+<meta name="description" content="Pillow Brawl: a fast online pillow-fight arena for iPhone and Android. 10 heroes, 4 game modes, 12 arenas — and watch out, Mom's coming!">
+<meta property="og:title" content="Pillow Brawl">
+<meta property="og:description" content="Online pillow-fight arena. 10 heroes, 4 modes, 12 arenas. Mom's coming!">
+<meta property="og:image" content="img/s0.jpg">
+<link rel="icon" href="img/icon.jpg">
+<style>
+/* VOICE: loud, playful, a bit cheeky — a sleepover that got out of hand
+   IDEA: lights out in the bedroom; the title glows like a night-light and the heroes line up on the bed
+   COLOUR and TYPE: night purple, night-light yellow, bubblegum pink; Archivo Black for shouting, Poppins for talking
+   LAYOUT: one tall scroll — hero with the line-up, a ticker, numbers, the "Mom's coming" twist, gallery, follow */
+@font-face{font-family:"Archivo Black";src:url(fonts/ArchivoBlack-Regular.ttf);font-display:swap}
+@font-face{font-family:"Poppins";src:url(fonts/Poppins-Bold.ttf);font-weight:700;font-display:swap}
+:root{--night:#1b0f47;--deep:#2b1461;--mid:#4b2aa8;--yel:#ffe36b;--pink:#ff4f8a;--sky:#6fd3ff;--ink:#fff;--soft:#cfc4ff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:700;color:var(--ink);background:var(--night);line-height:1.5;overflow-x:hidden}
+a{color:inherit}
+.shout{font-family:"Archivo Black","Poppins",sans-serif;font-weight:400;letter-spacing:.01em;line-height:.95;text-transform:uppercase}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* ---------- nav ---------- */
+nav{position:absolute;inset:0 0 auto 0;z-index:5;padding:16px 0}
+nav .wrap{display:flex;align-items:center;gap:12px}
+nav img{width:44px;height:44px;border-radius:12px;box-shadow:0 0 0 3px #fff3}
+nav b{font-family:"Archivo Black";font-weight:400;font-size:18px;letter-spacing:.04em}
+nav .sp{flex:1}
+select{font:inherit;font-size:14px;color:#fff;background:#ffffff1f;border:2px solid #ffffff40;border-radius:999px;padding:7px 12px;cursor:pointer}
+select option{color:#222}
+.pill{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:14px;background:var(--pink);border-radius:999px;padding:9px 16px;box-shadow:0 4px 0 #b3204f}
+.pill:active{transform:translateY(3px);box-shadow:0 1px 0 #b3204f}
+@media (max-width:560px){nav b{display:none}nav .wrap{gap:8px}.pill{font-size:12px;padding:8px 12px}select{font-size:13px;padding:6px 8px}}
+
+/* ---------- hero ---------- */
+header{position:relative;padding:110px 0 0;max-width:100vw;background:
+  radial-gradient(900px 500px at 50% 8%,#6a3fe0 0%,transparent 60%),
+  linear-gradient(#24115c,#3a1c8f 55%,#5a2fc0);overflow:hidden}
+.stars{position:absolute;inset:0;background-image:
+  radial-gradient(2px 2px at 12% 18%,#fff 50%,transparent 51%),radial-gradient(2px 2px at 28% 9%,#fff 50%,transparent 51%),
+  radial-gradient(3px 3px at 44% 22%,#ffe36b 50%,transparent 51%),radial-gradient(2px 2px at 63% 12%,#fff 50%,transparent 51%),
+  radial-gradient(2px 2px at 78% 26%,#fff 50%,transparent 51%),radial-gradient(3px 3px at 90% 10%,#ffe36b 50%,transparent 51%),
+  radial-gradient(2px 2px at 6% 40%,#fff 50%,transparent 51%),radial-gradient(2px 2px at 95% 42%,#fff 50%,transparent 51%);animation:tw 3.5s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.55}to{opacity:1}}
+.lights{position:absolute;left:-2%;right:-2%;top:78px;height:60px;pointer-events:none}
+.lights svg{width:100%;height:100%;overflow:visible}
+.bulb{animation:glow 2.4s ease-in-out infinite alternate}
+.bulb:nth-child(odd){animation-delay:1.2s}
+@keyframes glow{from{opacity:.55}to{opacity:1}}
+.hero{position:relative;text-align:center}
+h1{font-size:clamp(54px,12.5vw,168px);margin-top:26px;filter:drop-shadow(0 10px 0 #14093a)}
+h1 span{display:block;-webkit-text-stroke:clamp(3px,.55vw,8px) #2b1461;paint-order:stroke fill}
+h1 .a{color:var(--yel)}
+h1 .b{color:var(--pink);margin-top:-.04em}
+.tag{font-size:clamp(17px,2.3vw,26px);max-width:760px;margin:22px auto 0;color:#fff;text-shadow:0 2px 0 #14093a}
+.stores{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:28px 0 6px}
+.store{display:flex;align-items:center;gap:12px;text-align:left;text-decoration:none;background:#120a33;border:3px solid #ffffff2e;border-radius:18px;padding:11px 20px 11px 16px;min-width:210px;box-shadow:0 6px 0 #0a0520}
+.store svg{width:30px;height:30px;flex:none}
+.store small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--yel)}
+.store strong{display:block;font-family:"Archivo Black";font-weight:400;font-size:19px;line-height:1.1}
+.lineup{position:relative;display:flex;justify-content:center;align-items:flex-end;margin:34px auto 0;max-width:1240px;padding:0 6px;height:clamp(190px,34vw,430px)}
+.lineup img{height:100%;width:auto;margin:0 -2.6%;filter:drop-shadow(0 14px 10px #0008);transform-origin:50% 100%;animation:bob 2.6s ease-in-out infinite}
+.lineup img:nth-child(2n){animation-delay:-.9s;height:92%}
+.lineup img:nth-child(3n){animation-delay:-1.7s}
+.lineup img:nth-child(5){height:106%;z-index:2}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-10px) rotate(1.2deg)}}
+.bed{height:54px;background:linear-gradient(#ff8fb5,#ff5c94);border-top:8px solid #fff;border-radius:50% 50% 0 0/26px 26px 0 0;margin-top:-34px;position:relative;z-index:3}
+@media (max-width:640px){.lineup img:nth-child(n+8){display:none}.lineup img{margin:0 -3.5%}}
+
+/* ---------- ticker ---------- */
+.ticker{background:var(--yel);color:#2b1461;overflow:hidden;white-space:nowrap;border-block:6px solid #2b1461;transform:rotate(-1.2deg) scale(1.03);margin:-6px 0 0;position:relative;z-index:4}
+.ticker div{display:inline-block;padding:12px 0;animation:roll 26s linear infinite;font-family:"Archivo Black";font-weight:400;font-size:clamp(18px,2.6vw,30px);text-transform:uppercase}
+.ticker i{font-style:normal;color:var(--pink);margin:0 .7em}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{padding:84px 0}
+h2{font-size:clamp(34px,6vw,72px);color:var(--yel);filter:drop-shadow(0 6px 0 #0d0630)}
+h2 em{font-style:normal;color:var(--pink)}
+.lead{font-size:clamp(16px,1.9vw,21px);color:var(--soft);max-width:640px;margin-top:14px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media (max-width:900px){.nums{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.nums{grid-template-columns:1fr}}
+.num{background:linear-gradient(160deg,#3a1f96,#2a1470);border:3px solid #ffffff1c;border-radius:26px;padding:24px 24px 26px;position:relative;overflow:hidden;transition:transform .2s}
+.num:hover{transform:translateY(-6px) rotate(-1deg)}
+.num .n{font-family:"Archivo Black";font-weight:400;font-size:74px;line-height:1;color:var(--yel);-webkit-text-stroke:3px #1b0f47;paint-order:stroke fill}
+.num:nth-child(3n+2) .n{color:var(--pink)}
+.num:nth-child(3n) .n{color:var(--sky)}
+.num h3{font-family:"Archivo Black";font-weight:400;font-size:22px;text-transform:uppercase;margin-top:8px}
+.num p{font-size:15px;color:var(--soft);margin-top:6px}
+
+.mom{background:linear-gradient(#ff4f8a,#d92f6d);position:relative}
+.mom::before,.mom::after{content:"";position:absolute;left:0;right:0;height:40px;background:var(--night)}
+.mom::before{top:-1px;clip-path:polygon(0 0,100% 0,100% 100%,0 0)}
+.mom::after{bottom:-1px;clip-path:polygon(0 100%,100% 0,100% 100%)}
+.mom .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.mom h2{color:#fff}
+.mom h2 em{color:var(--yel)}
+.mom .lead{color:#ffe6ef}
+.mom ol{margin:22px 0 0;padding:0;list-style:none;counter-reset:s}
+.mom li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;margin-top:14px;font-size:17px}
+.mom li::before{content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;background:var(--yel);color:#2b1461;display:grid;place-items:center;font-family:"Archivo Black";font-weight:400}
+.shot{border-radius:26px;border:6px solid #fff;box-shadow:0 18px 0 #0003,0 30px 60px #0006;transform:rotate(2.5deg);width:100%;display:block}
+@media (max-width:860px){.mom .wrap{grid-template-columns:1fr}}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.grid img{width:100%;display:block;border-radius:20px;border:4px solid #ffffff26;transition:transform .2s}
+.grid img:hover{transform:scale(1.035) rotate(-1deg);border-color:var(--yel)}
+@media (max-width:760px){.grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.grid{grid-template-columns:1fr}}
+
+.follow{text-align:center;background:radial-gradient(700px 320px at 50% 0,#5a2fc0,transparent 70%)}
+.follow .lead{margin-inline:auto}
+.big{display:inline-flex;align-items:center;gap:12px;margin-top:28px;font-family:"Archivo Black";font-weight:400;font-size:clamp(18px,2.6vw,26px);text-decoration:none;text-transform:uppercase;color:#2b1461;background:var(--yel);padding:18px 34px;border-radius:999px;box-shadow:0 8px 0 #c79a1a}
+.big:active{transform:translateY(5px);box-shadow:0 3px 0 #c79a1a}
+
+footer{background:#120a33;padding:34px 0 44px;font-size:14px;color:var(--soft)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center}
+footer a{text-decoration:none;border-bottom:2px solid #ffffff33}
+footer a:hover{color:#fff;border-color:var(--yel)}
+footer .sp{flex:1}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <img src="img/icon.jpg" alt="Pillow Brawl">
+  <b data-t="name">PILLOW BRAWL</b>
+  <span class="sp"></span>
+  <select id="lang" aria-label="Language">
+    <option value="en">English</option><option value="tr">Türkçe</option><option value="de">Deutsch</option><option value="es">Español</option>
+    <option value="fr">Français</option><option value="pt">Português</option><option value="it">Italiano</option><option value="id">Indonesia</option>
+  </select>
+  <a class="pill" href="https://www.instagram.com/pillowbrawlgame" target="_blank" rel="noopener">@pillowbrawlgame</a>
+</div></nav>
+
+<header>
+  <div class="stars"></div>
+  <div class="lights"><svg viewBox="0 0 1000 60" preserveAspectRatio="none"><path d="M0 6 Q125 52 250 14 T500 14 T750 14 T1000 6" fill="none" stroke="#14093a" stroke-width="2"/>
+    <g><circle class="bulb" cx="60" cy="27" r="6" fill="#ffe36b"/><circle class="bulb" cx="150" cy="33" r="6" fill="#ff8fb5"/><circle class="bulb" cx="230" cy="19" r="6" fill="#6fd3ff"/><circle class="bulb" cx="330" cy="30" r="6" fill="#ffe36b"/><circle class="bulb" cx="420" cy="30" r="6" fill="#ff8fb5"/><circle class="bulb" cx="500" cy="15" r="6" fill="#6fd3ff"/><circle class="bulb" cx="590" cy="31" r="6" fill="#ffe36b"/><circle class="bulb" cx="680" cy="29" r="6" fill="#ff8fb5"/><circle class="bulb" cx="770" cy="17" r="6" fill="#6fd3ff"/><circle class="bulb" cx="860" cy="32" r="6" fill="#ffe36b"/><circle class="bulb" cx="945" cy="24" r="6" fill="#ff8fb5"/></g></svg></div>
+  <div class="hero wrap">
+    <h1 class="shout"><span class="a" data-t="t1">PILLOW</span><span class="b" data-t="t2">BRAWL</span></h1>
+    <p class="tag" data-t="tag">Lights out. Pillows up. The wildest online pillow fight on your phone.</p>
+    <div class="stores">
+      <span class="store"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg><span><small data-t="soon">Coming soon</small><strong>App Store</strong></span></span>
+      <span class="store"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg><span><small data-t="soon">Coming soon</small><strong>Google Play</strong></span></span>
+    </div>
+  </div>
+  <div class="lineup" aria-hidden="true">
+    <img src="img/c_gececi.webp" alt=""><img src="img/c_kabus.webp" alt=""><img src="img/c_robo.webp" alt=""><img src="img/c_bigudi.webp" alt=""><img src="img/c_dino.webp" alt=""><img src="img/c_dede.webp" alt=""><img src="img/c_astro.webp" alt=""><img src="img/c_pamuk.webp" alt=""><img src="img/c_ninja.webp" alt="">
+  </div>
+  <div class="bed"></div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div id="tick"></div></div>
+
+<section>
+  <div class="wrap">
+    <h2 class="shout" data-t="h_feat">Grab a pillow. <em>Start swinging.</em></h2>
+    <p class="lead" data-t="p_feat">Quick matches, simple controls, total chaos. Knock everyone off the bed and be the last one standing.</p>
+    <div class="nums">
+      <div class="num"><div class="n">10</div><h3 data-t="f1">Heroes</h3><p data-t="f1p">Each with a unique power — from Flying Slipper to Earthquake Snore.</p></div>
+      <div class="num"><div class="n">4</div><h3 data-t="f2">Game modes</h3><p data-t="f2p">Last Standing, Feather Hunt, King of the Bed and Giant Pillow.</p></div>
+      <div class="num"><div class="n">12</div><h3 data-t="f3">Arenas</h3><p data-t="f3p">Kids' room, kitchen, pillow fort, a spaceship — and more worlds on the way.</p></div>
+      <div class="num"><div class="n">5</div><h3 data-t="f4">Players online</h3><p data-t="f4p">Jump into a random match or open a room for your friends.</p></div>
+      <div class="num"><div class="n">9</div><h3 data-t="f5">Pillows to collect</h3><p data-t="f5p">Watermelon, ice, flame, rainbow, gold… each with its own hit effect.</p></div>
+      <div class="num"><div class="n">150</div><h3 data-t="f6">Levels</h3><p data-t="f6p">Play solo through 10 worlds and beat the boss at the end of each.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="mom">
+  <div class="wrap">
+    <div>
+      <h2 class="shout"><span data-t="h_mom1">Uh-oh.</span> <em data-t="h_mom2">Mom's coming!</em></h2>
+      <p class="lead" data-t="p_mom">In the middle of the fight the door creaks. Everyone has seconds to dive into bed and fake sleep.</p>
+      <ol>
+        <li data-t="m1">Hear the warning — drop everything.</li>
+        <li data-t="m2">Jump into bed before the light turns on.</li>
+        <li data-t="m3">Caught standing? You're out of the round.</li>
+      </ol>
+    </div>
+    <img class="shot" src="img/s2.jpg" alt="Mom's coming — jump in bed!">
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="shout" data-t="h_gal">Straight from <em>the game</em></h2>
+    <div class="grid">
+      <img src="img/s0.jpg" alt=""><img src="img/s1.jpg" alt=""><img src="img/s3.jpg" alt="">
+      <img src="img/s4.jpg" alt=""><img src="img/s5.jpg" alt=""><img src="img/s2.jpg" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="follow">
+  <div class="wrap">
+    <h2 class="shout" data-t="h_fol">Be there on <em>day one</em></h2>
+    <p class="lead" data-t="p_fol">Launch news, new heroes and gift codes land on Instagram first.</p>
+    <a class="big" href="https://www.instagram.com/pillowbrawlgame" target="_blank" rel="noopener" data-t="b_fol">Follow @pillowbrawlgame</a>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <span>© 2026 Pillow Brawl · Burak Taşdemir</span><span class="sp"></span>
+  <a href="privacy.html" data-t="privacy">Privacy Policy</a>
+  <a href="terms.html" data-t="terms">Terms of Use</a>
+  <a href="mailto:benburkiniz@gmail.com" data-t="contact">Contact</a>
+</div></footer>
+
+<script>
+const T={
+en:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lights out. Pillows up. The wildest online pillow fight on your phone.",soon:"Coming soon",
+ tick:["Epic pillow fights","Mom's coming!","Fake sleep or get caught","Play online with friends","Boss fights"],
+ h_feat:"Grab a pillow. <em>Start swinging.</em>",p_feat:"Quick matches, simple controls, total chaos. Knock everyone off the bed and be the last one standing.",
+ f1:"Heroes",f1p:"Each with a unique power — from Flying Slipper to Earthquake Snore.",f2:"Game modes",f2p:"Last Standing, Feather Hunt, King of the Bed and Giant Pillow.",
+ f3:"Arenas",f3p:"Kids' room, kitchen, pillow fort, a spaceship — and more worlds on the way.",f4:"Players online",f4p:"Jump into a random match or open a room for your friends.",
+ f5:"Pillows to collect",f5p:"Watermelon, ice, flame, rainbow, gold… each with its own hit effect.",f6:"Levels",f6p:"Play solo through 10 worlds and beat the boss at the end of each.",
+ h_mom1:"Uh-oh.",h_mom2:"Mom's coming!",p_mom:"In the middle of the fight the door creaks. Everyone has seconds to dive into bed and fake sleep.",
+ m1:"Hear the warning — drop everything.",m2:"Jump into bed before the light turns on.",m3:"Caught standing? You're out of the round.",
+ h_gal:"Straight from <em>the game</em>",h_fol:"Be there on <em>day one</em>",p_fol:"Launch news, new heroes and gift codes land on Instagram first.",b_fol:"Follow @pillowbrawlgame",
+ privacy:"Privacy Policy",terms:"Terms of Use",contact:"Contact",title:"Pillow Brawl — Online Pillow Fight Game"},
+tr:{name:"YASTIK SAVAŞI",t1:"YASTIK",t2:"SAVAŞI",tag:"Işıklar söndü, yastıklar havada. Telefonundaki en çılgın online yastık savaşı.",soon:"Çok yakında",
+ tick:["Efsane yastık savaşları","Annem geliyor!","Uyu numarası yap, yakalanma","Arkadaşlarınla online oyna","Patron savaşları"],
+ h_feat:"Kap yastığını. <em>Savur gitsin.</em>",p_feat:"Kısa maçlar, basit kontroller, tam bir kargaşa. Herkesi yataktan düşür, ayakta kalan son kişi ol.",
+ f1:"Karakter",f1p:"Her birinin kendine özel gücü var: Uçan Terlik'ten Deprem Horlaması'na.",f2:"Oyun modu",f2p:"Son Ayakta Kalan, Tüy Toplama, Yatağın Kralı ve Dev Yastık.",
+ f3:"Arena",f3p:"Çocuk odası, mutfak, yastık kalesi, uzay gemisi… Yeni dünyalar da yolda.",f4:"Kişilik online maç",f4p:"Rastgele bir maça gir ya da arkadaşlarına oda kur.",
+ f5:"Toplanacak yastık",f5p:"Karpuz, buz, ateş, gökkuşağı, altın… Her birinin vuruş efekti farklı.",f6:"Bölüm",f6p:"10 dünyayı tek başına geç, her dünyanın sonunda patronu devir.",
+ h_mom1:"Eyvah.",h_mom2:"Annem geliyor!",p_mom:"Savaşın tam ortasında kapı gıcırdar. Herkesin yatağa atlayıp uyu numarası yapmak için birkaç saniyesi var.",
+ m1:"Uyarıyı duy, her şeyi bırak.",m2:"Işık yanmadan yatağa atla.",m3:"Ayakta yakalanırsan o turdan elenirsin.",
+ h_gal:"Doğrudan <em>oyundan</em>",h_fol:"İlk gün <em>orada ol</em>",p_fol:"Çıkış tarihi, yeni karakterler ve hediye kodları önce Instagram'da.",b_fol:"@pillowbrawlgame'i takip et",
+ privacy:"Gizlilik Politikası",terms:"Kullanım Şartları",contact:"İletişim",title:"Yastık Savaşı — Online Yastık Savaşı Oyunu"},
+de:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Licht aus, Kissen hoch. Die wildeste Online-Kissenschlacht auf deinem Handy.",soon:"Demnächst",
+ tick:["Epische Kissenschlachten","Mama kommt!","Stell dich schlafend","Online mit Freunden","Bosskämpfe"],
+ h_feat:"Schnapp dir ein Kissen. <em>Hau drauf.</em>",p_feat:"Kurze Matches, einfache Steuerung, totales Chaos. Wirf alle vom Bett und bleib als Letzter stehen.",
+ f1:"Helden",f1p:"Jeder mit eigener Kraft — vom Fliegenden Pantoffel bis zum Erdbeben-Schnarchen.",f2:"Spielmodi",f2p:"Letzter Stehender, Federjagd, König des Betts und Riesenkissen.",
+ f3:"Arenen",f3p:"Kinderzimmer, Küche, Kissenburg, Raumschiff — weitere Welten folgen.",f4:"Spieler online",f4p:"Spring in ein Zufallsmatch oder eröffne einen Raum für Freunde.",
+ f5:"Kissen zum Sammeln",f5p:"Melone, Eis, Flamme, Regenbogen, Gold … jedes mit eigenem Treffereffekt.",f6:"Level",f6p:"Spiele dich solo durch 10 Welten und besiege am Ende den Boss.",
+ h_mom1:"Oh-oh.",h_mom2:"Mama kommt!",p_mom:"Mitten im Kampf knarrt die Tür. Alle haben Sekunden, um ins Bett zu springen und sich schlafend zu stellen.",
+ m1:"Hör die Warnung — lass alles fallen.",m2:"Spring ins Bett, bevor das Licht angeht.",m3:"Stehend erwischt? Du bist raus.",
+ h_gal:"Direkt aus <em>dem Spiel</em>",h_fol:"Sei am <em>ersten Tag</em> dabei",p_fol:"Start-News, neue Helden und Geschenkcodes gibt es zuerst auf Instagram.",b_fol:"@pillowbrawlgame folgen",
+ privacy:"Datenschutz",terms:"Nutzungsbedingungen",contact:"Kontakt",title:"Pillow Brawl — Online-Kissenschlacht"},
+es:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luces fuera, almohadas arriba. La guerra de almohadas online más loca en tu móvil.",soon:"Muy pronto",
+ tick:["Guerras de almohadas épicas","¡Viene mamá!","Hazte el dormido","Juega online con amigos","Jefes finales"],
+ h_feat:"Agarra una almohada. <em>¡A repartir!</em>",p_feat:"Partidas rápidas, controles simples, caos total. Tira a todos de la cama y sé el último en pie.",
+ f1:"Héroes",f1p:"Cada uno con un poder único: de la Zapatilla Voladora al Ronquido Terremoto.",f2:"Modos de juego",f2p:"Último en Pie, Caza de Plumas, Rey de la Cama y Almohada Gigante.",
+ f3:"Arenas",f3p:"Cuarto infantil, cocina, fuerte de almohadas, nave espacial… y más mundos en camino.",f4:"Jugadores online",f4p:"Entra en una partida al azar o abre una sala para tus amigos.",
+ f5:"Almohadas para coleccionar",f5p:"Sandía, hielo, fuego, arcoíris, oro… cada una con su efecto.",f6:"Niveles",f6p:"Juega en solitario por 10 mundos y vence al jefe de cada uno.",
+ h_mom1:"Oh, oh.",h_mom2:"¡Viene mamá!",p_mom:"En plena pelea cruje la puerta. Todos tienen segundos para meterse en la cama y hacerse los dormidos.",
+ m1:"Oye el aviso: suéltalo todo.",m2:"Salta a la cama antes de que se encienda la luz.",m3:"¿Te pillan de pie? Fuera de la ronda.",
+ h_gal:"Directo <em>del juego</em>",h_fol:"Llega el <em>primer día</em>",p_fol:"Noticias del lanzamiento, nuevos héroes y códigos de regalo, primero en Instagram.",b_fol:"Sigue a @pillowbrawlgame",
+ privacy:"Política de privacidad",terms:"Términos de uso",contact:"Contacto",title:"Pillow Brawl — Guerra de almohadas online"},
+fr:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lumières éteintes, oreillers en l'air. La bataille d'oreillers en ligne la plus folle sur ton téléphone.",soon:"Bientôt",
+ tick:["Batailles d'oreillers épiques","Maman arrive !","Fais semblant de dormir","Joue en ligne avec tes amis","Combats de boss"],
+ h_feat:"Attrape un oreiller. <em>Et cogne !</em>",p_feat:"Parties rapides, commandes simples, chaos total. Fais tomber tout le monde du lit et reste le dernier debout.",
+ f1:"Héros",f1p:"Chacun a son pouvoir : de la Pantoufle Volante au Ronflement Sismique.",f2:"Modes de jeu",f2p:"Dernier Debout, Chasse aux Plumes, Roi du Lit et Oreiller Géant.",
+ f3:"Arènes",f3p:"Chambre d'enfant, cuisine, fort d'oreillers, vaisseau spatial… et d'autres mondes à venir.",f4:"Joueurs en ligne",f4p:"Rejoins une partie au hasard ou ouvre un salon pour tes amis.",
+ f5:"Oreillers à collectionner",f5p:"Pastèque, glace, flamme, arc-en-ciel, or… chacun avec son effet.",f6:"Niveaux",f6p:"Traverse 10 mondes en solo et bats le boss à la fin de chacun.",
+ h_mom1:"Oh oh.",h_mom2:"Maman arrive !",p_mom:"En plein combat, la porte grince. Tout le monde a quelques secondes pour plonger au lit et faire semblant de dormir.",
+ m1:"Écoute l'alerte : lâche tout.",m2:"Saute au lit avant que la lumière s'allume.",m3:"Pris debout ? Tu es éliminé de la manche.",
+ h_gal:"Tout droit <em>du jeu</em>",h_fol:"Sois là dès le <em>premier jour</em>",p_fol:"Infos de sortie, nouveaux héros et codes cadeaux arrivent d'abord sur Instagram.",b_fol:"Suivre @pillowbrawlgame",
+ privacy:"Confidentialité",terms:"Conditions d'utilisation",contact:"Contact",title:"Pillow Brawl — Bataille d'oreillers en ligne"},
+pt:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luzes apagadas, almofadas no ar. A guerra de travesseiros online mais louca no seu celular.",soon:"Em breve",
+ tick:["Guerras de travesseiros épicas","A mamãe vem aí!","Finja que está dormindo","Jogue online com amigos","Lutas contra chefes"],
+ h_feat:"Pegue um travesseiro. <em>E manda ver!</em>",p_feat:"Partidas rápidas, controles simples, caos total. Derrube todos da cama e seja o último de pé.",
+ f1:"Heróis",f1p:"Cada um com um poder único: do Chinelo Voador ao Ronco Terremoto.",f2:"Modos de jogo",f2p:"Último de Pé, Caça às Penas, Rei da Cama e Travesseiro Gigante.",
+ f3:"Arenas",f3p:"Quarto das crianças, cozinha, forte de travesseiros, nave espacial… e mais mundos a caminho.",f4:"Jogadores online",f4p:"Entre numa partida aleatória ou abra uma sala para os amigos.",
+ f5:"Travesseiros para colecionar",f5p:"Melancia, gelo, fogo, arco-íris, ouro… cada um com seu efeito.",f6:"Fases",f6p:"Jogue sozinho por 10 mundos e vença o chefe no fim de cada um.",
+ h_mom1:"Ih…",h_mom2:"A mamãe vem aí!",p_mom:"No meio da briga a porta range. Todo mundo tem segundos para pular na cama e fingir que dorme.",
+ m1:"Ouça o aviso: largue tudo.",m2:"Pule na cama antes de a luz acender.",m3:"Pego de pé? Está fora da rodada.",
+ h_gal:"Direto <em>do jogo</em>",h_fol:"Esteja lá no <em>primeiro dia</em>",p_fol:"Novidades do lançamento, novos heróis e códigos de presente chegam primeiro no Instagram.",b_fol:"Seguir @pillowbrawlgame",
+ privacy:"Política de Privacidade",terms:"Termos de Uso",contact:"Contato",title:"Pillow Brawl — Guerra de travesseiros online"},
+it:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luci spente, cuscini in aria. La battaglia di cuscini online più folle sul tuo telefono.",soon:"In arrivo",
+ tick:["Battaglie di cuscini epiche","Arriva la mamma!","Fai finta di dormire","Gioca online con gli amici","Scontri con i boss"],
+ h_feat:"Prendi un cuscino. <em>E mena!</em>",p_feat:"Partite veloci, comandi semplici, caos totale. Butta tutti giù dal letto e resta l'ultimo in piedi.",
+ f1:"Eroi",f1p:"Ognuno con un potere unico: dalla Ciabatta Volante al Russare Terremoto.",f2:"Modalità",f2p:"Ultimo in Piedi, Caccia alle Piume, Re del Letto e Cuscino Gigante.",
+ f3:"Arene",f3p:"Cameretta, cucina, fortino di cuscini, astronave… e altri mondi in arrivo.",f4:"Giocatori online",f4p:"Entra in una partita casuale o apri una stanza per gli amici.",
+ f5:"Cuscini da collezionare",f5p:"Anguria, ghiaccio, fiamma, arcobaleno, oro… ognuno con il suo effetto.",f6:"Livelli",f6p:"Gioca da solo in 10 mondi e batti il boss alla fine di ognuno.",
+ h_mom1:"Oh-oh.",h_mom2:"Arriva la mamma!",p_mom:"Nel bel mezzo della lotta la porta cigola. Tutti hanno pochi secondi per tuffarsi a letto e fingere di dormire.",
+ m1:"Senti l'avviso: molla tutto.",m2:"Salta a letto prima che si accenda la luce.",m3:"Beccato in piedi? Sei fuori dal round.",
+ h_gal:"Direttamente <em>dal gioco</em>",h_fol:"Sii lì dal <em>primo giorno</em>",p_fol:"Novità sul lancio, nuovi eroi e codici regalo arrivano prima su Instagram.",b_fol:"Segui @pillowbrawlgame",
+ privacy:"Informativa sulla privacy",terms:"Termini d'uso",contact:"Contatti",title:"Pillow Brawl — Battaglia di cuscini online"},
+id:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lampu mati, bantal terangkat. Perang bantal online paling seru di ponselmu.",soon:"Segera hadir",
+ tick:["Perang bantal epik","Ibu datang!","Pura-pura tidur","Main online bareng teman","Lawan bos"],
+ h_feat:"Ambil bantal. <em>Ayunkan!</em>",p_feat:"Pertandingan singkat, kontrol mudah, kekacauan total. Jatuhkan semua dari kasur dan jadilah yang terakhir berdiri.",
+ f1:"Karakter",f1p:"Masing-masing punya kekuatan unik — dari Sandal Terbang sampai Dengkuran Gempa.",f2:"Mode permainan",f2p:"Terakhir Berdiri, Berburu Bulu, Raja Kasur, dan Bantal Raksasa.",
+ f3:"Arena",f3p:"Kamar anak, dapur, benteng bantal, pesawat luar angkasa… dan dunia baru menyusul.",f4:"Pemain online",f4p:"Masuk ke pertandingan acak atau buka ruang untuk teman.",
+ f5:"Bantal untuk dikoleksi",f5p:"Semangka, es, api, pelangi, emas… masing-masing dengan efeknya sendiri.",f6:"Level",f6p:"Main sendiri melewati 10 dunia dan kalahkan bos di akhir tiap dunia.",
+ h_mom1:"Waduh.",h_mom2:"Ibu datang!",p_mom:"Di tengah pertarungan, pintu berderit. Semua punya beberapa detik untuk lompat ke kasur dan pura-pura tidur.",
+ m1:"Dengar peringatannya — tinggalkan semuanya.",m2:"Lompat ke kasur sebelum lampu menyala.",m3:"Ketahuan berdiri? Kamu gugur di ronde itu.",
+ h_gal:"Langsung <em>dari game</em>",h_fol:"Hadir sejak <em>hari pertama</em>",p_fol:"Kabar rilis, karakter baru, dan kode hadiah muncul lebih dulu di Instagram.",b_fol:"Ikuti @pillowbrawlgame",
+ privacy:"Kebijakan Privasi",terms:"Ketentuan Penggunaan",contact:"Kontak",title:"Pillow Brawl — Game perang bantal online"}};
+function setLang(l){
+  if(!T[l]) l="en"; const d=T[l];
+  document.documentElement.lang=l; document.title=d.title;
+  document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t; if(d[k]!=null) e.innerHTML=d[k]});
+  const row=d.tick.map(s=>s+"<i>★</i>").join(""); document.getElementById("tick").innerHTML=row+row+row+row;
+  document.getElementById("lang").value=l;
+  document.querySelectorAll('a[href^="privacy.html"],a[href^="terms.html"]').forEach(a=>{a.href=a.getAttribute("href").split("#")[0]+"#"+l});
+  try{localStorage.setItem("pb_lang",l)}catch(e){}
+}
+let start=(location.hash||"").slice(1);
+if(!T[start]){try{start=localStorage.getItem("pb_lang")}catch(e){}}
+if(!T[start]) start=(navigator.language||"en").slice(0,2).toLowerCase();
+setLang(start);
+document.getElementById("lang").addEventListener("change",e=>setLang(e.target.value));
+</script>
+</body>
+</html>
