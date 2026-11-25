@@ -144,6 +144,19 @@ footer a{text-decoration:none;border-bottom:2px solid #ffffff33}
 footer a:hover{color:#fff;border-color:var(--yel)}
 footer .sp{flex:1}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+
+.heroes{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px}
+@media (max-width:1000px){.heroes{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:620px){.heroes{grid-template-columns:repeat(2,1fr);gap:12px}}
+.hero{position:relative;border-radius:24px;padding:0 14px 16px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 55%,#2a1470),#22105c 78%);border:3px solid color-mix(in srgb,var(--c) 60%,#ffffff22);overflow:hidden;transition:transform .2s;text-align:center}
+.hero:hover{transform:translateY(-6px) rotate(-1deg)}
+.hero .pic{height:190px;margin:0 -14px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:radial-gradient(circle at 50% 75%,#ffffff30,transparent 62%)}
+.hero .pic img{height:118%;width:auto;margin-bottom:-18%;filter:drop-shadow(0 8px 6px #0007)}
+.hero h3{font-family:"Archivo Black";font-weight:400;font-size:20px;text-transform:uppercase;margin-top:12px;line-height:1.1}
+.hero p{font-size:13.5px;color:var(--soft);margin-top:6px;min-height:2.6em;line-height:1.3}
+.hero .pw{display:inline-block;margin-top:10px;padding:6px 12px;border-radius:999px;background:#0d063099;font-size:12.5px;font-weight:700;color:var(--yel);border:2px solid #ffffff1c}
+.hero .pw i{font-style:normal;color:#fff;opacity:.7;margin-right:4px;text-transform:uppercase;font-size:10.5px;letter-spacing:.06em}
+@media (max-width:620px){.hero .pic{height:150px}.hero h3{font-size:16px}.hero p{font-size:12.5px}}
 </style>
 </head>
 <body>
@@ -194,6 +207,14 @@ footer .sp{flex:1}
   </div>
 </section>
 
+<section id="heroes">
+  <div class="wrap">
+    <h2 class="shout" data-t="h_heroes">Meet the <em>heroes</em></h2>
+    <p class="lead" data-t="p_heroes">Ten sleepyheads, ten special powers. Pick your favourite.</p>
+    <div class="heroes" id="heroes-grid"></div>
+  </div>
+</section>
+
 <section class="mom">
   <div class="wrap">
     <div>
@@ -236,7 +257,7 @@ footer .sp{flex:1}
 
 <script>
 const T={
-en:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lights out. Pillows up. The wildest online pillow fight on your phone.",soon:"Coming soon",
+en:{h_heroes:"Meet the <em>heroes</em>",p_heroes:"Ten sleepyheads, ten special powers. Pick your favourite.",pw:"Power",name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lights out. Pillows up. The wildest online pillow fight on your phone.",soon:"Coming soon",
  tick:["Epic pillow fights","Mom's coming!","Fake sleep or get caught","Play online with friends","Boss fights"],
  h_feat:"Grab a pillow. <em>Start swinging.</em>",p_feat:"Quick matches, simple controls, total chaos. Knock everyone off the bed and be the last one standing.",
  f1:"Heroes",f1p:"Each with a unique power — from Flying Slipper to Earthquake Snore.",f2:"Game modes",f2p:"Last Standing, Feather Hunt, King of the Bed and Giant Pillow.",
@@ -246,7 +267,7 @@ en:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lights out. Pillows up. The 
  m1:"Hear the warning — drop everything.",m2:"Jump into bed before the light turns on.",m3:"Caught standing? You're out of the round.",
  h_gal:"Straight from <em>the game</em>",h_fol:"Be there on <em>day one</em>",p_fol:"Launch news, new heroes and gift codes land on Instagram first.",b_fol:"Follow @pillowbrawlgame",
  privacy:"Privacy Policy",terms:"Terms of Use",contact:"Contact",title:"Pillow Brawl — Online Pillow Fight Game"},
-tr:{name:"YASTIK SAVAŞI",t1:"YASTIK",t2:"SAVAŞI",tag:"Işıklar söndü, yastıklar havada. Telefonundaki en çılgın online yastık savaşı.",soon:"Çok yakında",
+tr:{h_heroes:"Karakterlerle <em>tanış</em>",p_heroes:"On uykucu, on özel güç. Favorini seç.",pw:"Güç",name:"YASTIK SAVAŞI",t1:"YASTIK",t2:"SAVAŞI",tag:"Işıklar söndü, yastıklar havada. Telefonundaki en çılgın online yastık savaşı.",soon:"Çok yakında",
  tick:["Efsane yastık savaşları","Annem geliyor!","Uyu numarası yap, yakalanma","Arkadaşlarınla online oyna","Patron savaşları"],
  h_feat:"Kap yastığını. <em>Savur gitsin.</em>",p_feat:"Kısa maçlar, basit kontroller, tam bir kargaşa. Herkesi yataktan düşür, ayakta kalan son kişi ol.",
  f1:"Karakter",f1p:"Her birinin kendine özel gücü var: Uçan Terlik'ten Deprem Horlaması'na.",f2:"Oyun modu",f2p:"Son Ayakta Kalan, Tüy Toplama, Yatağın Kralı ve Dev Yastık.",
@@ -256,7 +277,7 @@ tr:{name:"YASTIK SAVAŞI",t1:"YASTIK",t2:"SAVAŞI",tag:"Işıklar söndü, yast�
  m1:"Uyarıyı duy, her şeyi bırak.",m2:"Işık yanmadan yatağa atla.",m3:"Ayakta yakalanırsan o turdan elenirsin.",
  h_gal:"Doğrudan <em>oyundan</em>",h_fol:"İlk gün <em>orada ol</em>",p_fol:"Çıkış tarihi, yeni karakterler ve hediye kodları önce Instagram'da.",b_fol:"@pillowbrawlgame'i takip et",
  privacy:"Gizlilik Politikası",terms:"Kullanım Şartları",contact:"İletişim",title:"Yastık Savaşı — Online Yastık Savaşı Oyunu"},
-de:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Licht aus, Kissen hoch. Die wildeste Online-Kissenschlacht auf deinem Handy.",soon:"Demnächst",
+de:{h_heroes:"Lerne die <em>Helden</em> kennen",p_heroes:"Zehn Schlafmützen, zehn Spezialkräfte. Wähl deinen Liebling.",pw:"Kraft",name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Licht aus, Kissen hoch. Die wildeste Online-Kissenschlacht auf deinem Handy.",soon:"Demnächst",
  tick:["Epische Kissenschlachten","Mama kommt!","Stell dich schlafend","Online mit Freunden","Bosskämpfe"],
  h_feat:"Schnapp dir ein Kissen. <em>Hau drauf.</em>",p_feat:"Kurze Matches, einfache Steuerung, totales Chaos. Wirf alle vom Bett und bleib als Letzter stehen.",
  f1:"Helden",f1p:"Jeder mit eigener Kraft — vom Fliegenden Pantoffel bis zum Erdbeben-Schnarchen.",f2:"Spielmodi",f2p:"Letzter Stehender, Federjagd, König des Betts und Riesenkissen.",
@@ -266,7 +287,7 @@ de:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Licht aus, Kissen hoch. Die 
  m1:"Hör die Warnung — lass alles fallen.",m2:"Spring ins Bett, bevor das Licht angeht.",m3:"Stehend erwischt? Du bist raus.",
  h_gal:"Direkt aus <em>dem Spiel</em>",h_fol:"Sei am <em>ersten Tag</em> dabei",p_fol:"Start-News, neue Helden und Geschenkcodes gibt es zuerst auf Instagram.",b_fol:"@pillowbrawlgame folgen",
  privacy:"Datenschutz",terms:"Nutzungsbedingungen",contact:"Kontakt",title:"Pillow Brawl — Online-Kissenschlacht"},
-es:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luces fuera, almohadas arriba. La guerra de almohadas online más loca en tu móvil.",soon:"Muy pronto",
+es:{h_heroes:"Conoce a los <em>héroes</em>",p_heroes:"Diez dormilones, diez poderes especiales. Elige a tu favorito.",pw:"Poder",name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luces fuera, almohadas arriba. La guerra de almohadas online más loca en tu móvil.",soon:"Muy pronto",
  tick:["Guerras de almohadas épicas","¡Viene mamá!","Hazte el dormido","Juega online con amigos","Jefes finales"],
  h_feat:"Agarra una almohada. <em>¡A repartir!</em>",p_feat:"Partidas rápidas, controles simples, caos total. Tira a todos de la cama y sé el último en pie.",
  f1:"Héroes",f1p:"Cada uno con un poder único: de la Zapatilla Voladora al Ronquido Terremoto.",f2:"Modos de juego",f2p:"Último en Pie, Caza de Plumas, Rey de la Cama y Almohada Gigante.",
@@ -276,7 +297,7 @@ es:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luces fuera, almohadas arrib
  m1:"Oye el aviso: suéltalo todo.",m2:"Salta a la cama antes de que se encienda la luz.",m3:"¿Te pillan de pie? Fuera de la ronda.",
  h_gal:"Directo <em>del juego</em>",h_fol:"Llega el <em>primer día</em>",p_fol:"Noticias del lanzamiento, nuevos héroes y códigos de regalo, primero en Instagram.",b_fol:"Sigue a @pillowbrawlgame",
  privacy:"Política de privacidad",terms:"Términos de uso",contact:"Contacto",title:"Pillow Brawl — Guerra de almohadas online"},
-fr:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lumières éteintes, oreillers en l'air. La bataille d'oreillers en ligne la plus folle sur ton téléphone.",soon:"Bientôt",
+fr:{h_heroes:"Découvre les <em>héros</em>",p_heroes:"Dix dormeurs, dix pouvoirs spéciaux. Choisis ton préféré.",pw:"Pouvoir",name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lumières éteintes, oreillers en l'air. La bataille d'oreillers en ligne la plus folle sur ton téléphone.",soon:"Bientôt",
  tick:["Batailles d'oreillers épiques","Maman arrive !","Fais semblant de dormir","Joue en ligne avec tes amis","Combats de boss"],
  h_feat:"Attrape un oreiller. <em>Et cogne !</em>",p_feat:"Parties rapides, commandes simples, chaos total. Fais tomber tout le monde du lit et reste le dernier debout.",
  f1:"Héros",f1p:"Chacun a son pouvoir : de la Pantoufle Volante au Ronflement Sismique.",f2:"Modes de jeu",f2p:"Dernier Debout, Chasse aux Plumes, Roi du Lit et Oreiller Géant.",
@@ -286,7 +307,7 @@ fr:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lumières éteintes, oreille
  m1:"Écoute l'alerte : lâche tout.",m2:"Saute au lit avant que la lumière s'allume.",m3:"Pris debout ? Tu es éliminé de la manche.",
  h_gal:"Tout droit <em>du jeu</em>",h_fol:"Sois là dès le <em>premier jour</em>",p_fol:"Infos de sortie, nouveaux héros et codes cadeaux arrivent d'abord sur Instagram.",b_fol:"Suivre @pillowbrawlgame",
  privacy:"Confidentialité",terms:"Conditions d'utilisation",contact:"Contact",title:"Pillow Brawl — Bataille d'oreillers en ligne"},
-pt:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luzes apagadas, almofadas no ar. A guerra de travesseiros online mais louca no seu celular.",soon:"Em breve",
+pt:{h_heroes:"Conheça os <em>heróis</em>",p_heroes:"Dez dorminhocos, dez poderes especiais. Escolha o seu favorito.",pw:"Poder",name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luzes apagadas, almofadas no ar. A guerra de travesseiros online mais louca no seu celular.",soon:"Em breve",
  tick:["Guerras de travesseiros épicas","A mamãe vem aí!","Finja que está dormindo","Jogue online com amigos","Lutas contra chefes"],
  h_feat:"Pegue um travesseiro. <em>E manda ver!</em>",p_feat:"Partidas rápidas, controles simples, caos total. Derrube todos da cama e seja o último de pé.",
  f1:"Heróis",f1p:"Cada um com um poder único: do Chinelo Voador ao Ronco Terremoto.",f2:"Modos de jogo",f2p:"Último de Pé, Caça às Penas, Rei da Cama e Travesseiro Gigante.",
@@ -296,7 +317,7 @@ pt:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luzes apagadas, almofadas no
  m1:"Ouça o aviso: largue tudo.",m2:"Pule na cama antes de a luz acender.",m3:"Pego de pé? Está fora da rodada.",
  h_gal:"Direto <em>do jogo</em>",h_fol:"Esteja lá no <em>primeiro dia</em>",p_fol:"Novidades do lançamento, novos heróis e códigos de presente chegam primeiro no Instagram.",b_fol:"Seguir @pillowbrawlgame",
  privacy:"Política de Privacidade",terms:"Termos de Uso",contact:"Contato",title:"Pillow Brawl — Guerra de travesseiros online"},
-it:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luci spente, cuscini in aria. La battaglia di cuscini online più folle sul tuo telefono.",soon:"In arrivo",
+it:{h_heroes:"Scopri gli <em>eroi</em>",p_heroes:"Dieci dormiglioni, dieci poteri speciali. Scegli il tuo preferito.",pw:"Potere",name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luci spente, cuscini in aria. La battaglia di cuscini online più folle sul tuo telefono.",soon:"In arrivo",
  tick:["Battaglie di cuscini epiche","Arriva la mamma!","Fai finta di dormire","Gioca online con gli amici","Scontri con i boss"],
  h_feat:"Prendi un cuscino. <em>E mena!</em>",p_feat:"Partite veloci, comandi semplici, caos totale. Butta tutti giù dal letto e resta l'ultimo in piedi.",
  f1:"Eroi",f1p:"Ognuno con un potere unico: dalla Ciabatta Volante al Russare Terremoto.",f2:"Modalità",f2p:"Ultimo in Piedi, Caccia alle Piume, Re del Letto e Cuscino Gigante.",
@@ -306,7 +327,7 @@ it:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Luci spente, cuscini in aria
  m1:"Senti l'avviso: molla tutto.",m2:"Salta a letto prima che si accenda la luce.",m3:"Beccato in piedi? Sei fuori dal round.",
  h_gal:"Direttamente <em>dal gioco</em>",h_fol:"Sii lì dal <em>primo giorno</em>",p_fol:"Novità sul lancio, nuovi eroi e codici regalo arrivano prima su Instagram.",b_fol:"Segui @pillowbrawlgame",
  privacy:"Informativa sulla privacy",terms:"Termini d'uso",contact:"Contatti",title:"Pillow Brawl — Battaglia di cuscini online"},
-id:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lampu mati, bantal terangkat. Perang bantal online paling seru di ponselmu.",soon:"Segera hadir",
+id:{h_heroes:"Kenali para <em>hero</em>",p_heroes:"Sepuluh tukang tidur, sepuluh kekuatan spesial. Pilih favoritmu.",pw:"Kekuatan",name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lampu mati, bantal terangkat. Perang bantal online paling seru di ponselmu.",soon:"Segera hadir",
  tick:["Perang bantal epik","Ibu datang!","Pura-pura tidur","Main online bareng teman","Lawan bos"],
  h_feat:"Ambil bantal. <em>Ayunkan!</em>",p_feat:"Pertandingan singkat, kontrol mudah, kekacauan total. Jatuhkan semua dari kasur dan jadilah yang terakhir berdiri.",
  f1:"Karakter",f1p:"Masing-masing punya kekuatan unik — dari Sandal Terbang sampai Dengkuran Gempa.",f2:"Mode permainan",f2p:"Terakhir Berdiri, Berburu Bulu, Raja Kasur, dan Bantal Raksasa.",
@@ -316,11 +337,15 @@ id:{name:"PILLOW BRAWL",t1:"PILLOW",t2:"BRAWL",tag:"Lampu mati, bantal terangkat
  m1:"Dengar peringatannya — tinggalkan semuanya.",m2:"Lompat ke kasur sebelum lampu menyala.",m3:"Ketahuan berdiri? Kamu gugur di ronde itu.",
  h_gal:"Langsung <em>dari game</em>",h_fol:"Hadir sejak <em>hari pertama</em>",p_fol:"Kabar rilis, karakter baru, dan kode hadiah muncul lebih dulu di Instagram.",b_fol:"Ikuti @pillowbrawlgame",
  privacy:"Kebijakan Privasi",terms:"Ketentuan Penggunaan",contact:"Kontak",title:"Pillow Brawl — Game perang bantal online"}};
+const HEROES=[{"f": "gececi", "n": "Gececi", "c": "#6b4bd8", "t": ["Still gaming at 3 AM", "Gece 3'te hâlâ oyunda", "Um 3 Uhr noch am Zocken", "Jugando a las 3 AM", "Encore en jeu à 3h", "Jogando às 3 da manhã", "Ancora in gioco alle 3", "Masih main jam 3 pagi"], "p": ["Night Dash", "Gece Atılışı", "Nachtsprint", "Embestida nocturna", "Ruée nocturne", "Investida noturna", "Scatto notturno", "Lesat Malam"]}, {"f": "kabus", "n": "Kâbus", "c": "#ff3d7f", "t": ["Dark queen of dreams", "Rüyaların karanlık kraliçesi", "Dunkle Traumkönigin", "Reina oscura de los sueños", "Reine sombre des rêves", "Rainha sombria dos sonhos", "Regina oscura dei sogni", "Ratu mimpi gelap"], "p": ["Nightmare Wave", "Kâbus Dalgası", "Albtraumwelle", "Ola de pesadilla", "Vague cauchemar", "Onda de pesadelo", "Onda d'incubo", "Gelombang Mimpi Buruk"]}, {"f": "uyurgezer", "n": "Uyurgezer", "c": "#3fa9f5", "t": ["Hits even while asleep", "Uyurken bile vuruyor", "Haut sogar im Schlaf", "Golpea hasta dormido", "Frappe même en dormant", "Bate até dormindo", "Colpisce anche nel sonno", "Memukul sambil tidur"], "p": ["Ghost Sleep", "Hayalet Uyku", "Geisterschlaf", "Sueño fantasma", "Sommeil fantôme", "Sono fantasma", "Sonno fantasma", "Tidur Hantu"]}, {"f": "pamuk", "n": "Pamuk", "c": "#ff8fc8", "t": ["Giant in bunny pajamas", "Tavşan pijamalı dev", "Riese im Hasenpyjama", "Gigante en pijama de conejo", "Géant en pyjama lapin", "Gigante de pijama de coelho", "Gigante in pigiama da coniglio", "Raksasa piyama kelinci"], "p": ["Bear Hug Slam", "Dev Kucak", "Bärenumarmung", "Abrazo de oso", "Câlin d'ours", "Abraço de urso", "Abbraccio d'orso", "Pelukan Beruang"]}, {"f": "bigudi", "n": "Bigudi Teyze", "c": "#b07cff", "t": ["Never misses with a slipper", "Terliği asla ıskalamaz", "Trifft immer mit dem Hausschuh", "Nunca falla con la chancla", "Ne rate jamais avec la pantoufle", "Nunca erra o chinelo", "Non sbaglia mai con la ciabatta", "Sandalnya tak pernah meleset"], "p": ["Flying Slipper", "Uçan Terlik", "Fliegender Hausschuh", "Chancla voladora", "Pantoufle volante", "Chinelo voador", "Ciabatta volante", "Sandal Terbang"]}, {"f": "dede", "n": "Dede", "c": "#d83a3a", "t": ["His snore shakes the earth", "Horlaması deprem yaratır", "Sein Schnarchen bebt", "Sus ronquidos tiemblan la tierra", "Son ronflement fait trembler", "O ronco faz tremer", "Il suo russare fa tremare", "Dengkurannya bikin gempa"], "p": ["Earthquake Snore", "Deprem Horlaması", "Bebenschnarcher", "Ronquido sísmico", "Ronflement sismique", "Ronco sísmico", "Russata sismica", "Dengkur Gempa"]}, {"f": "dino", "n": "Dino", "c": "#4cc26a", "t": ["His tail sweeps everything", "Kuyruğu her şeyi süpürür", "Sein Schwanz fegt alles weg", "Su cola barre todo", "Sa queue balaie tout", "A cauda varre tudo", "La coda spazza via tutto", "Ekornya menyapu semua"], "p": ["Tail Tornado", "Kuyruk Fırtınası", "Schwanzwirbel", "Tornado de cola", "Tornade de queue", "Tornado de cauda", "Tornado di coda", "Topan Ekor"]}, {"f": "ninja", "n": "Uyku Ninjası", "c": "#2b6cff", "t": ["Sleepless master of shadows", "Gölgelerin uykusuz efendisi", "Schlafloser Schattenmeister", "Maestro insomne de las sombras", "Maître insomniaque des ombres", "Mestre insone das sombras", "Maestro insonne delle ombre", "Master bayangan tanpa tidur"], "p": ["Shadow Step", "Gölge Adım", "Schattenschritt", "Paso sombra", "Pas de l'ombre", "Passo sombrio", "Passo d'ombra", "Langkah Bayangan"]}, {"f": "astro", "n": "Astro", "c": "#ff9a3d", "t": ["Not a fan of gravity", "Yerçekimini sevmez", "Kein Fan der Schwerkraft", "No le gusta la gravedad", "Pas fan de gravité", "Não curte gravidade", "Non ama la gravità", "Tak suka gravitasi"], "p": ["Zero-G Slam", "Sıfır Yerçekimi", "Null-G-Stampfer", "Golpe gravedad cero", "Impact zéro-G", "Impacto gravidade zero", "Schianto gravità zero", "Hantaman Nol-G"]}, {"f": "robo", "n": "Robo", "c": "#3fd0e0", "t": ["Never runs out of battery", "Şarjı bitmeyen yastıkçı", "Akku immer voll", "Nunca se queda sin batería", "Batterie infinie", "Bateria infinita", "Batteria infinita", "Baterai tak pernah habis"], "p": ["Pillow Shield", "Yastık Kalkanı", "Kissenschild", "Escudo almohada", "Bouclier oreiller", "Escudo travesseiro", "Scudo cuscino", "Perisai Bantal"]}];
+const LANGS=["en", "tr", "de", "es", "fr", "pt", "it", "id"];
+function drawHeroes(l){const i=Math.max(0,LANGS.indexOf(l));const g=document.getElementById("heroes-grid");if(!g)return;g.innerHTML=HEROES.map(h=>`<div class="hero" style="--c:${h.c}"><div class="pic"><img src="img/c_${h.f}.webp" alt="${h.n} — ${h.t[i]}" loading="lazy"></div><h3>${h.n}</h3><p>${h.t[i]}</p><span class="pw"><i>${T[l].pw}</i>${h.p[i]}</span></div>`).join("")}
 function setLang(l){
   if(!T[l]) l="en"; const d=T[l];
   document.documentElement.lang=l; document.title=d.title;
   document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t; if(d[k]!=null) e.innerHTML=d[k]});
   const row=d.tick.map(s=>s+"<i>★</i>").join(""); document.getElementById("tick").innerHTML=row+row+row+row;
+  drawHeroes(l);
   document.getElementById("lang").value=l;
   document.querySelectorAll('a[href^="privacy.html"],a[href^="terms.html"]').forEach(a=>{a.href=a.getAttribute("href").split("#")[0]+"#"+l});
   try{localStorage.setItem("pb_lang",l)}catch(e){}
