@@ -231,7 +231,7 @@ footer .sp{flex:1}
         <li data-t="m3">Caught standing? You're out of the round.</li>
       </ol>
     </div>
-    <img class="shot" src="img/s2.jpg" alt="Mom's coming — jump in bed!">
+    <img class="shot" data-s="s2" src="img/s2.jpg" alt="Mom's coming — jump in bed!">
   </div>
 </section>
 
@@ -240,8 +240,8 @@ footer .sp{flex:1}
     <h2 class="shout" data-t="h_gal">Straight from <em>the game</em></h2>
     <video class="vid" controls muted loop playsinline preload="none" poster="img/poster.jpg"><source src="video/pillow-brawl-gameplay.mp4" type="video/mp4"></video>
     <div class="grid">
-      <img src="img/s0.jpg" alt="Pillow Brawl gameplay — bedroom arena" loading="lazy"><img src="img/s1.jpg" alt="Pillow Brawl gameplay — kitchen arena" loading="lazy"><img src="img/s3.jpg" alt="Pillow Brawl gameplay — pillow fort arena" loading="lazy">
-      <img src="img/s4.jpg" alt="Pillow Brawl gameplay — living room match" loading="lazy"><img src="img/s5.jpg" alt="Pillow Brawl gameplay — spaceship boss fight" loading="lazy"><img src="img/s2.jpg" alt="Pillow Brawl gameplay — Mom's coming" loading="lazy">
+      <img data-s="s0" src="img/s0.jpg" alt="Pillow Brawl gameplay — bedroom arena" loading="lazy"><img data-s="s1" src="img/s1.jpg" alt="Pillow Brawl gameplay — kitchen arena" loading="lazy"><img data-s="s3" src="img/s3.jpg" alt="Pillow Brawl gameplay — pillow fort arena" loading="lazy">
+      <img data-s="s4" src="img/s4.jpg" alt="Pillow Brawl gameplay — living room match" loading="lazy"><img data-s="s5" src="img/s5.jpg" alt="Pillow Brawl gameplay — spaceship boss fight" loading="lazy"><img data-s="s2" src="img/s2.jpg" alt="Pillow Brawl gameplay — Mom's coming" loading="lazy">
     </div>
   </div>
 </section>
@@ -352,6 +352,8 @@ function setLang(l){
   document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t; if(d[k]!=null) e.innerHTML=d[k]});
   const row=d.tick.map(s=>s+"<i>★</i>").join(""); document.getElementById("tick").innerHTML=row+row+row+row;
   drawHeroes(l);
+  const tr=l==="tr"; document.querySelectorAll("img[data-s]").forEach(e=>{const u="img/"+(tr?"tr_":"")+e.dataset.s+".jpg"; if(e.getAttribute("src")!==u) e.src=u});
+  const v=document.querySelector(".vid"); if(v){const u="video/"+(tr?"yastik-savasi-oynanis":"pillow-brawl-gameplay")+".mp4"; const so=v.querySelector("source"); if(so.getAttribute("src")!==u){so.src=u; v.load()}}
   document.getElementById("lang").value=l;
   document.querySelectorAll('a[href^="privacy.html"],a[href^="terms.html"]').forEach(a=>{a.href=a.getAttribute("href").split("#")[0]+"#"+l});
   try{localStorage.setItem("pb_lang",l)}catch(e){}
