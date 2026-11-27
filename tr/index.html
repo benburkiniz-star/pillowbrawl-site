@@ -179,10 +179,6 @@ footer .sp{flex:1}
 .co .spark{position:absolute;z-index:2;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px var(--c);opacity:0;animation:tw 2.6s infinite}
 @keyframes tw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1)}}
 @media (max-width:620px){.co .pic{height:160px}.co h3{font-size:14px}}
-.vids{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:18px;align-items:start;margin-top:30px}
-.vids .vid{margin-top:0}
-.vid9{width:100%;aspect-ratio:9/16;border-radius:22px;background:#000;border:3px solid #ffffff2a;box-shadow:0 14px 40px #0008;display:block}
-@media (max-width:760px){.vids{grid-template-columns:1fr}.vid9{max-width:360px;margin:0 auto}}
 </style>
 </head>
 <body>
@@ -267,10 +263,7 @@ footer .sp{flex:1}
 <section>
   <div class="wrap">
     <h2 class="shout" data-t="h_gal">Straight from <em>the game</em></h2>
-    <div class="vids">
-      <video class="vid9" controls muted loop playsinline preload="metadata" poster="img/promo_poster.jpg"><source src="video/yastik-savasi-tanitim.mp4" type="video/mp4"></video>
-    <video class="vid" controls muted loop playsinline preload="none" poster="img/poster.jpg"><source src="video/yastik-savasi-oynanis.mp4" type="video/mp4"></video>
-    </div>
+    <video class="vid" controls muted loop playsinline preload="none" poster="img/poster2.jpg"><source src="video/yastik-savasi-oynanis-2.mp4" type="video/mp4"></video>
     <div class="grid">
       <img data-s="s0" src="img/tr_s0.jpg" alt="Pillow Brawl gameplay — bedroom arena" loading="lazy"><img data-s="s1" src="img/tr_s1.jpg" alt="Pillow Brawl gameplay — kitchen arena" loading="lazy"><img data-s="s3" src="img/tr_s3.jpg" alt="Pillow Brawl gameplay — pillow fort arena" loading="lazy">
       <img data-s="s4" src="img/tr_s4.jpg" alt="Pillow Brawl gameplay — living room match" loading="lazy"><img data-s="s5" src="img/tr_s5.jpg" alt="Pillow Brawl gameplay — spaceship boss fight" loading="lazy"><img data-s="s2" src="img/tr_s2.jpg" alt="Pillow Brawl gameplay — Mom's coming" loading="lazy">
@@ -389,8 +382,7 @@ function setLang(l){
   const row=d.tick.map(s=>s+"<i>★</i>").join(""); document.getElementById("tick").innerHTML=row+row+row+row;
   drawHeroes(l); drawCos(l);
   const tr=l==="tr"; document.querySelectorAll("img[data-s]").forEach(e=>{const u="img/"+(tr?"tr_":"")+e.dataset.s+".jpg"; if(e.getAttribute("src")!==u) e.src=u});
-  const v9=document.querySelector(".vid9"); if(v9){const u="video/"+(tr?"yastik-savasi-tanitim":"pillow-brawl-trailer")+".mp4"; const so=v9.querySelector("source"); if(so.getAttribute("src")!==u){so.src=u; v9.poster="img/"+(tr?"promo_poster":"promo_poster_en")+".jpg"; v9.load()}}
-  const v=document.querySelector(".vid"); if(v){const u="video/"+(tr?"yastik-savasi-oynanis":"pillow-brawl-gameplay")+".mp4"; const so=v.querySelector("source"); if(so.getAttribute("src")!==u){so.src=u; v.load()}}
+  const v=document.querySelector(".vid"); if(v){const u="video/"+(tr?"yastik-savasi-oynanis-2":"pillow-brawl-gameplay-2")+".mp4"; const so=v.querySelector("source"); if(so.getAttribute("src")!==u){so.src=u; v.load()}}
   document.getElementById("lang").value=l;
   document.querySelectorAll('a[href^="privacy.html"],a[href^="terms.html"]').forEach(a=>{a.href=a.getAttribute("href").split("#")[0]+"#"+l});
   try{localStorage.setItem("pb_lang",l)}catch(e){}
